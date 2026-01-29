@@ -1,37 +1,90 @@
 <!DOCTYPE html>
+<!-- ============================================================================
+     UNIVERSITY LIBRARY - HOME PAGE (index.html)
+     ============================================================================
+     
+     This is the MAIN CATALOG PAGE where users browse and search books.
+     
+     PAGE STRUCTURE:
+     1. <head> - Metadata, scripts, styles
+     2. <body> - Visible content
+        - Navbar (rendered by app.js)
+        - Header with search bar
+        - Book grid (populated by main.js)
+        - Footer
+     3. <script> - JavaScript files
+     
+     FOR BEGINNERS:
+     - HTML = HyperText Markup Language (the structure of web pages)
+     - Tailwind classes = CSS utilities (bg-blue-500 = blue background)
+     - JavaScript adds interactivity (loading books, handling clicks)
+     ============================================================================ -->
+
 <html lang="en">
+<!-- ============================================================================
+     <head> - HEAD SECTION
+     Contains metadata, not visible content.
+     ============================================================================ -->
 
 <head>
+    <!-- Character encoding (supports emojis and special characters) -->
     <meta charset="UTF-8">
+
+    <!-- Responsive design (scales well on mobile devices) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title (shown in browser tab) -->
     <title>University Library | Academic Catalog</title>
+
+    <!-- Tailwind CSS (loaded from CDN for styling) -->
+    <!-- This provides most of our styling - we only add custom CSS in styles.css -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Our custom styles (glassmorphism, animations, etc.) -->
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+
+<!-- ============================================================================
+     <body> - BODY SECTION
+     All visible content goes here.
+     ============================================================================ -->
 
 <body
     class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-    <!-- Navbar Placeholder -->
+    <!-- =========================================================================
+         NAVBAR PLACEHOLDER
+         The navbar is rendered by app.js and injected here.
+         This allows the same navbar on every page.
+         ========================================================================= -->
 
-    <!-- Navbar Placeholder -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Main Content -->
+    <!-- =========================================================================
+         MAIN CONTENT AREA
+         Contains the search bar and book grid.
+         ========================================================================= -->
+
     <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
 
+        <!-- =========================================================================
+             HEADER SECTION
+             Contains the page title and search bar.
+             ========================================================================= -->
 
-        <!-- Header Section (Now Middle/Bottom of top area) -->
         <header class="relative pt-24 pb-16 mt-8">
             <div class="max-w-4xl mx-auto px-4 text-center">
+
+                <!-- Page Title with gradient text -->
                 <div class="relative inline-block mb-10">
                     <h1
                         class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight drop-shadow-sm relative z-10">
                         Academic <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Resources</span>
                     </h1>
-                    <!-- Decorative Underline -->
+
+                    <!-- Decorative underline (two layers for visual effect) -->
                     <div
                         class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full opacity-30 blur-sm">
                     </div>
@@ -40,15 +93,24 @@
                     </div>
                 </div>
 
+
+                <!-- SEARCH BAR CONTAINER -->
+                <!-- Glassmorphism style with blur effect -->
                 <div
                     class="glass-panel p-2 rounded-2xl max-w-2xl mx-auto shadow-2xl shadow-blue-900/5 backdrop-blur-xl flex relative z-30 transform hover:scale-[1.01] transition-transform duration-300">
+
+                    <!-- Search Input Wrapper -->
                     <div class="relative flex-1 flex items-center">
+                        <!-- Search Icon (absolute positioned) -->
                         <div class="absolute left-4 text-slate-400">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </div>
+
+                        <!-- Search Input Field -->
+                        <!-- ID="searchInput" is used by main.js to attach event listener -->
                         <input type="text" id="searchInput" placeholder="Search by title, author, or ISBN..."
                             class="w-full pl-12 pr-4 py-3 bg-transparent border-none text-slate-900 dark:text-white placeholder-slate-400 focus:ring-0 text-base">
                     </div>
@@ -63,9 +125,12 @@
                         </svg>
                     </button>
 
-                    <!-- Dropdown Menu -->
+                    <!-- Dropdown Menu (Hidden by default) -->
+                    <!-- ID="filterMenu" is used by main.js to toggle visibility -->
                     <div id="filterMenu"
                         class="hidden absolute top-full right-0 mt-3 w-64 glass-panel rounded-xl shadow-2xl p-4 flex flex-col gap-4 animate-fade-in origin-top-right z-50">
+
+                        <!-- Sort Options -->
                         <div>
                             <label
                                 class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Sorting</label>
@@ -77,6 +142,8 @@
                                 <option value="title_asc">Title: A-Z</option>
                             </select>
                         </div>
+
+                        <!-- Availability Toggle -->
                         <div>
                             <label
                                 class="flex items-center justify-between cursor-pointer group p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
@@ -95,12 +162,19 @@
             </div>
         </header>
 
+        <!-- Two-column layout (for future sidebar if needed) -->
         <div class="flex flex-col lg:flex-row gap-8">
 
 
+            <!-- =========================================================================
+                 BOOK GRID SECTION
+                 This is where books are displayed.
+                 
+                 ID="book-grid" is used by main.js to inject book cards.
+                 ========================================================================= -->
 
-            <!-- Book Grid -->
             <section class="flex-1">
+                <!-- Result count badge -->
                 <div class="glass-card rounded-2xl p-1 mb-6 inline-flex items-center gap-2">
                     <span
                         class="px-3 py-1 bg-white dark:bg-slate-800 rounded-xl text-xs font-bold text-slate-900 dark:text-white shadow-sm"
@@ -108,8 +182,11 @@
                     <span class="text-xs font-medium text-slate-500 pr-3">Resources Found</span>
                 </div>
 
+                <!-- Book Grid Container -->
+                <!-- Grid layout: 2 cols mobile, 3 tablet, 4-5 desktop -->
                 <div id="book-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                    <!-- Loading State -->
+
+                    <!-- Loading State (shown while books are loading) -->
                     <div class="col-span-full py-20 flex flex-col items-center justify-center text-slate-400">
                         <div
                             class="w-12 h-12 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mb-4">
@@ -121,15 +198,30 @@
         </div>
     </main>
 
+    <!-- =========================================================================
+         FOOTER
+         Simple footer with copyright.
+         ========================================================================= -->
+
     <footer
         class="mt-auto py-8 text-center text-slate-500 dark:text-slate-400 border-t border-slate-200/50 dark:border-slate-800/50 backdrop-blur-sm">
         <p class="text-xs font-medium">University Library System &copy; 2026</p>
     </footer>
 
-    <!-- Scripts -->
-    <!-- Scripts -->
+    <!-- =========================================================================
+         JAVASCRIPT SCRIPTS
+         Loaded at the end for better performance.
+         ========================================================================= -->
+
+    <!-- app.js - Core utilities (API client, theme, navbar) -->
     <script src="../js/app.js"></script>
+
+    <!-- main.js - Page-specific logic (book loading, search, etc.) -->
     <script src="../js/main.js"></script>
+
 </body>
+<!-- ============================================================================
+     END OF HTML
+     ============================================================================ -->
 
 </html>

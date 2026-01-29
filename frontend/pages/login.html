@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!-- ============================================================================
+     UNIVERSITY LIBRARY - LOGIN PAGE (login.html)
+     ============================================================================
+     
+     This is the AUTHENTICATION PAGE where users log in or register.
+     
+     PAGE STRUCTURE:
+     1. Split layout: Left = branding, Right = login/signup forms
+     2. Toggle between Login and Register views
+     3. Glassmorphism design
+     
+     FOR BEGINNERS:
+     - This page uses a split-panel layout (left/right on desktop)
+     - The JavaScript toggles between login and signup forms
+     ============================================================================ -->
+
 <html lang="en">
 
 <head>
@@ -11,13 +27,23 @@
 
 <body class="bg-slate-50 dark:bg-slate-950 min-h-screen flex items-center justify-center p-4">
 
+    <!-- Main Card Container -->
+    <!-- Split layout: flex-col on mobile, flex-row on desktop (md) -->
     <div
         class="w-full max-w-4xl bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-slate-200 dark:border-slate-800">
 
-        <!-- Left Panel: Branding -->
+
+        <!-- =========================================================================
+             LEFT PANEL: BRANDING
+             Shows the library branding and decorative elements.
+             ========================================================================= -->
+
         <div
             class="w-full md:w-1/2 p-12 bg-slate-900 text-white flex flex-col justify-between relative overflow-hidden">
+
+            <!-- Content (above decorative blobs) -->
             <div class="relative z-10">
+                <!-- Logo/Icon -->
                 <div class="w-10 h-10 bg-white/10 backdrop-blur rounded-lg flex items-center justify-center mb-6">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -25,21 +51,32 @@
                         </path>
                     </svg>
                 </div>
+
+                <!-- Headline -->
                 <h2 class="text-3xl font-bold tracking-tight mb-2">University Library</h2>
                 <p class="text-slate-400">Your gateway to academic excellence and research resources.</p>
             </div>
 
+            <!-- Footer text -->
             <div class="relative z-10 text-xs text-slate-500 mt-12">
                 &copy; 2026 Academic Systems. secure access only.
             </div>
 
-            <!-- Abstract Decor -->
+            <!-- Decorative blobs (background animation) -->
+            <!-- These create the glowing effect behind the branding -->
             <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-blue-500/20 blur-3xl rounded-full"></div>
             <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-indigo-500/20 blur-3xl rounded-full"></div>
         </div>
 
-        <!-- Right Panel: Forms -->
+
+        <!-- =========================================================================
+             RIGHT PANEL: AUTH FORMS
+             Contains login form, signup form, and theme toggle.
+             ========================================================================= -->
+
         <div class="w-full md:w-1/2 p-12 relative">
+
+            <!-- Theme Toggle (top right corner) -->
             <div class="absolute top-4 right-4">
                 <button onclick="theme.toggle()"
                     class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
@@ -47,14 +84,26 @@
                 </button>
             </div>
 
+
+            <!-- =========================================================================
+                 LOGIN FORM CONTAINER
+                 ID="login-container" is toggled by main.js
+                 ========================================================================= -->
+
             <div id="login-container" class="animate-fade-in">
+
+                <!-- Form Header -->
                 <div class="mb-8">
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1" id="auth-title">Welcome Back</h3>
                     <p class="text-sm text-slate-500 dark:text-slate-400" id="auth-subtitle">Please enter your
                         credentials to access your account.</p>
                 </div>
 
+                <!-- Login Form -->
+                <!-- ID="login-form" is used by main.js to attach submit handler -->
                 <form id="login-form" class="space-y-5">
+
+                    <!-- Username Field -->
                     <div>
                         <label
                             class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Username</label>
@@ -62,6 +111,8 @@
                             class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:outline-none transition-all"
                             placeholder="Enter your username" required>
                     </div>
+
+                    <!-- Password Field -->
                     <div>
                         <label
                             class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Password</label>
@@ -69,24 +120,45 @@
                             class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:outline-none transition-all"
                             placeholder="Enter your password" required>
                     </div>
+
+                    <!-- Submit Button -->
                     <button type="submit"
-                        class="w-full py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors shadow-lg shadow-slate-900/10">Sign
-                        In</button>
+                        class="w-full py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors shadow-lg shadow-slate-900/10">
+                        Sign In
+                    </button>
                 </form>
 
+                <!-- Signup Link -->
                 <div class="mt-6 text-center">
-                    <p class="text-sm text-slate-500">Don't have an account? <button onclick="toggleAuth('signup')"
-                            class="text-slate-900 dark:text-white font-medium hover:underline">Register now</button></p>
+                    <p class="text-sm text-slate-500">Don't have an account?
+                        <button onclick="toggleAuth('signup')"
+                            class="text-slate-900 dark:text-white font-medium hover:underline">
+                            Register now
+                        </button>
+                    </p>
                 </div>
             </div>
 
+
+            <!-- =========================================================================
+                 SIGNUP FORM CONTAINER
+                 Hidden by default, shown when toggled.
+                 ID="signup-container" is toggled by main.js
+                 ========================================================================= -->
+
             <div id="signup-container" class="hidden animate-fade-in">
+
+                <!-- Form Header -->
                 <div class="mb-8">
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Create Account</h3>
                     <p class="text-sm text-slate-500 dark:text-slate-400">Join the academic community.</p>
                 </div>
 
+                <!-- Signup Form -->
+                <!-- ID="signup-form" is used by main.js to attach submit handler -->
                 <form id="signup-form" class="space-y-4">
+
+                    <!-- Full Name Field -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Full
                             Name</label>
@@ -94,6 +166,8 @@
                             class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:outline-none transition-all"
                             placeholder="John Doe" required>
                     </div>
+
+                    <!-- Email Field -->
                     <div>
                         <label
                             class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Email</label>
@@ -101,6 +175,8 @@
                             class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:outline-none transition-all"
                             placeholder="john@university.edu" required>
                     </div>
+
+                    <!-- Username and Password (side by side) -->
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label
@@ -118,22 +194,31 @@
                         </div>
                     </div>
 
+                    <!-- Submit Button -->
                     <button type="submit"
-                        class="w-full py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors shadow-lg shadow-slate-900/10">Create
-                        Account</button>
+                        class="w-full py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors shadow-lg shadow-slate-900/10">
+                        Create Account
+                    </button>
                 </form>
 
+                <!-- Login Link -->
                 <div class="mt-6 text-center">
-                    <p class="text-sm text-slate-500">Already have an account? <button onclick="toggleAuth('login')"
-                            class="text-slate-900 dark:text-white font-medium hover:underline">Sign in</button></p>
+                    <p class="text-sm text-slate-500">Already have an account?
+                        <button onclick="toggleAuth('login')"
+                            class="text-slate-900 dark:text-white font-medium hover:underline">
+                            Sign in
+                        </button>
+                    </p>
                 </div>
             </div>
 
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="../js/app.js"></script>
     <script src="../js/main.js"></script>
+
 </body>
 
 </html>

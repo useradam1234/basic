@@ -1,87 +1,198 @@
+/**
+ * ============================================================================
+ * UNIVERSITY LIBRARY SYSTEM - STYLES
+ * ============================================================================
+ * 
+ * This file contains all the CUSTOM CSS for the application.
+ * The rest of the styling comes from Tailwind CSS (loaded via CDN).
+ * 
+ * CONTENTS:
+ * 1. Global Reset & Base Styles
+ * 2. Custom Scrollbar
+ * 3. Liquid Background (Animated Blobs)
+ * 4. Glassmorphism Components
+ * 5. Animations
+ * 6. Tab Styling
+ * 
+ * FOR BEGINNERS:
+ * - CSS = Cascading Style Sheets (describes how HTML looks)
+ * - Classes starting with . are CSS rules
+ * - Classes with - are Tailwind classes (built-in utilities)
+ * - The dark: prefix is Tailwind's dark mode variant
+ * ============================================================================
+ */
+
+
+/* ============================================================================
+   SECTION 1: IMPORTS & GLOBAL RESET
+   ============================================================================ */
+
+/**
+ * Import Inter font from Google Fonts
+ * 
+ * WHY INTER?
+ * - Clean, modern, readable
+ * - Good for both headings and body text
+ * - Optimized for screens
+ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Global Reset & Base */
+
+/**
+ * Global Reset & Base Styles
+ * 
+ * WHAT THIS DOES:
+ * - Sets default font family to Inter
+ * - Smooths font rendering (looks better on screens)
+ * - Prevents horizontal scroll from background elements
+ */
 body {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    /* Safari/Chrome */
     -moz-osx-font-smoothing: grayscale;
+    /* Firefox */
     overflow-x: hidden;
+    /* Prevent horizontal scroll */
     /* Prevent scroll from background blobs */
 }
 
-/* Custom Scrollbar */
+
+/* ============================================================================
+   SECTION 2: CUSTOM SCROLLBAR
+   ============================================================================ */
+
+/**
+ * Custom scrollbar styling
+ * 
+ * By default, scrollbars can look ugly and inconsistent.
+ * This makes them subtle and modern.
+ * 
+ * BROWSER SUPPORT:
+ * - ::-webkit-scrollbar is Chrome/Safari/Edge
+ * - Firefox uses scrollbar-width (not shown here)
+ */
+
+/* The track (background) of the scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
+    /* Narrow scrollbar */
     height: 6px;
+    /* Short scrollbar for horizontal scrolling */
 }
 
+/* The track background */
 ::-webkit-scrollbar-track {
     background: transparent;
+    /* Blend with background */
 }
 
+/* The handle (the draggable part) */
 ::-webkit-scrollbar-thumb {
     background: #cbd5e1;
+    /* Light gray color */
     border-radius: 3px;
+    /* Rounded corners */
 }
 
+/* Dark mode scrollbar */
 .dark ::-webkit-scrollbar-thumb {
     background: #334155;
+    /* Darker gray for dark mode */
 }
 
+/* Handle hover state */
 ::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
+    /* Slightly darker on hover */
 }
 
-/* Liquid Background Utilities */
+
+/* ============================================================================
+   SECTION 3: LIQUID BACKGROUND ANIMATION
+   ============================================================================ */
+
+/**
+ * WHAT IS THIS?
+ * These are the animated colored blobs in the background.
+ * They float around slowly, creating a dynamic, living feel.
+ * 
+ * HOW IT WORKS:
+ * - Fixed position covers the whole screen
+ * - Z-index: -1 puts it behind everything
+ * - Border-radius: 50% makes them circular
+ * - Filter: blur(80px) creates the soft, dreamy look
+ * - Animation: Moves them around continuously
+ */
+
+/* Container for the blobs */
 .liquid-bg-container {
     position: fixed;
+    /* Stays in place when scrolling */
     top: 0;
     left: 0;
     width: 100vw;
+    /* Full viewport width */
     height: 100vh;
+    /* Full viewport height */
     z-index: -1;
+    /* Behind everything */
     overflow: hidden;
+    /* Hide anything that overflows */
     pointer-events: none;
+    /* Let clicks pass through to elements below */
 }
 
+/* Individual blob styling */
 .liquid-blob {
     position: absolute;
     border-radius: 50%;
+    /* Make it circular */
     filter: blur(80px);
+    /* Soft, dreamy edges */
     opacity: 0.6;
+    /* Semi-transparent */
     animation: blob-float 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* BLOB 1 - Blue */
 .blob-1 {
     top: -10%;
     right: -10%;
     width: 600px;
     height: 600px;
     background: rgba(59, 130, 246, 0.2);
-    /* Blue-500 */
+    /* Blue with transparency */
     animation-delay: 0s;
+    /* Start immediately */
 }
 
+/* BLOB 2 - Indigo */
 .blob-2 {
     bottom: -10%;
     left: -10%;
     width: 500px;
     height: 500px;
     background: rgba(99, 102, 241, 0.2);
-    /* Indigo-500 */
+    /* Indigo with transparency */
     animation-delay: -5s;
+    /* Start 5 seconds into animation */
 }
 
+/* BLOB 3 - Violet */
 .blob-3 {
     top: 40%;
     left: 40%;
     width: 400px;
     height: 400px;
     background: rgba(139, 92, 246, 0.15);
-    /* Violet-500 */
+    /* Violet with more transparency */
     animation-delay: -10s;
+    /* Start 10 seconds into animation */
 }
 
+/* DARK MODE ADJUSTMENTS */
+/* Reduce opacity in dark mode for better contrast */
 .dark .blob-1 {
     background: rgba(59, 130, 246, 0.15);
 }
@@ -94,55 +205,110 @@ body {
     background: rgba(139, 92, 246, 0.1);
 }
 
-@keyframes blob-float {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
 
-    100% {
-        transform: translate(20px, 40px) scale(1.1);
-    }
-}
+/* ============================================================================
+   SECTION 4: GLASSMORPHISM
+   ============================================================================ */
 
-/* Glass Components */
+/**
+ * WHAT IS GLASSMORPHISM?
+ * A design trend that makes elements look like frosted glass.
+ * - Semi-transparent background
+ * - Blur effect (backdrop-filter)
+ * - Subtle border
+ * - Shadow for depth
+ * 
+ * WHY USE IT?
+ * - Modern, elegant look
+ * - Lets the background blobs show through
+ * - Creates depth and hierarchy
+ */
+
+/* Glass Panel - Used for navbar, dropdowns */
 .glass-panel {
     background: rgba(255, 255, 255, 0.7);
+    /* White with 70% opacity */
     backdrop-filter: blur(20px);
+    /* Blur what's behind */
     -webkit-backdrop-filter: blur(20px);
+    /* Safari support */
     border: 1px solid rgba(255, 255, 255, 0.5);
+    /* Subtle white border */
 }
 
+/* Dark mode glass panel */
 .dark .glass-panel {
     background: rgba(15, 23, 42, 0.6);
+    /* Dark blue-gray */
     border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Very subtle border */
 }
 
+
+/* Glass Card - Used for book cards, content areas */
 .glass-card {
     background: rgba(255, 255, 255, 0.6);
+    /* White with 60% opacity */
     backdrop-filter: blur(12px);
+    /* Slight blur */
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Subtle border */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow */
 }
 
+/* Dark mode glass card */
 .dark .glass-card {
     background: rgba(30, 41, 59, 0.4);
+    /* Darker background */
     border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle border */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    /* Darker shadow */
 }
 
+
+/* ============================================================================
+   SECTION 5: ANIMATIONS
+   ============================================================================ */
+
+/**
+ * Fade In Animation
+ * 
+ * WHAT IT DOES:
+ * - Elements fade in and slide up when they appear
+ * - Uses CSS animation (keyframe)
+ * - animation-delay creates a stagger effect
+ * 
+ * USAGE:
+ * Add class="animate-fade-in" to any element
+ * Add style="--delay: 0.1s" for staggered animation
+ */
 .animate-fade-in {
     animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: var(--delay, 0s);
+    /* Use CSS variable or default */
     opacity: 0;
+    /* Start invisible */
     transform: translateY(15px);
+    /* Start slightly down */
 }
 
+
+/* Modal backdrop blur */
 .modal-backdrop-blur {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
 
+
+/**
+ * Keyframes for fade in animation
+ * 
+ * FROM: Invisible and slightly down
+ * TO: Visible and in place
+ */
 @keyframes fadeIn {
     to {
         opacity: 1;
@@ -150,12 +316,85 @@ body {
     }
 }
 
-.active-tab {
-    background-color: #eff6ff;
-    color: #2563eb;
+
+/**
+ * Blob floating animation
+ * 
+ * WHAT IT DOES:
+ * - Moves blobs around slowly
+ * - Creates organic, fluid movement
+ * - Alternate direction (forward then back)
+ */
+@keyframes blob-float {
+    0% {
+        transform: translate(0, 0) scale(1);
+        /* Start position */
+    }
+
+    100% {
+        transform: translate(20px, 40px) scale(1.1);
+        /* End position (shifted and slightly larger) */
+    }
 }
 
+
+/* ============================================================================
+   SECTION 6: TAB STYLING
+   ============================================================================ */
+
+/**
+ * Active tab styling
+ * 
+ * Used in the admin dashboard for tab navigation.
+ * Highlights the currently selected tab.
+ */
+
+/* Light mode active tab */
+.active-tab {
+    background-color: #eff6ff;
+    /* Light blue background */
+    color: #2563eb;
+    /* Blue text */
+}
+
+/* Dark mode active tab */
 .dark .active-tab {
     background-color: rgba(30, 58, 138, 0.2);
+    /* Darker blue with transparency */
     color: #60a5fa;
+    /* Light blue text */
 }
+
+
+/* ============================================================================
+   SECTION 7: ADDITIONAL UTILITIES
+   ============================================================================ */
+
+/**
+ * These are additional utility classes that extend Tailwind.
+ * They're used throughout the application.
+ */
+
+/* Line clamp - limit text to specific number of lines */
+.line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-clamp: 1;
+    overflow: hidden;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+    transition: all 0.2s ease;
+}
+
+
+/* ============================================================================
+   END OF STYLES
+   ============================================================================
+ */
