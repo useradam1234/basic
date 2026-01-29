@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Library | Academic Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Navbar Placeholder -->
+
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+
+
+
+        <!-- Header Section (Now Middle/Bottom of top area) -->
+        <header class="relative pt-24 pb-16 mt-8">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <div class="relative inline-block mb-10">
+                    <h1
+                        class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight drop-shadow-sm relative z-10">
+                        Academic <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Resources</span>
+                    </h1>
+                    <!-- Decorative Underline -->
+                    <div
+                        class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full opacity-30 blur-sm">
+                    </div>
+                    <div
+                        class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
+                    </div>
+                </div>
+
+                <div
+                    class="glass-panel p-2 rounded-2xl max-w-2xl mx-auto shadow-2xl shadow-blue-900/5 backdrop-blur-xl flex relative z-30 transform hover:scale-[1.01] transition-transform duration-300">
+                    <div class="relative flex-1 flex items-center">
+                        <div class="absolute left-4 text-slate-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="searchInput" placeholder="Search by title, author, or ISBN..."
+                            class="w-full pl-12 pr-4 py-3 bg-transparent border-none text-slate-900 dark:text-white placeholder-slate-400 focus:ring-0 text-base">
+                    </div>
+
+                    <!-- Filter Button -->
+                    <button id="filterBtn" onclick="toggleFilterMenu()"
+                        class="p-3 mr-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors relative">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="filterMenu"
+                        class="hidden absolute top-full right-0 mt-3 w-64 glass-panel rounded-xl shadow-2xl p-4 flex flex-col gap-4 animate-fade-in origin-top-right z-50">
+                        <div>
+                            <label
+                                class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Sorting</label>
+                            <select id="sortFilter"
+                                class="w-full p-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="newest">Newest Arrivals</option>
+                                <option value="price_asc">Price: Low to High</option>
+                                <option value="price_desc">Price: High to Low</option>
+                                <option value="title_asc">Title: A-Z</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                class="flex items-center justify-between cursor-pointer group p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Available
+                                    Only</span>
+                                <div class="relative flex items-center">
+                                    <input type="checkbox" id="availableFilter" class="peer sr-only">
+                                    <div
+                                        class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+
+
+
+            <!-- Book Grid -->
+            <section class="flex-1">
+                <div class="glass-card rounded-2xl p-1 mb-6 inline-flex items-center gap-2">
+                    <span
+                        class="px-3 py-1 bg-white dark:bg-slate-800 rounded-xl text-xs font-bold text-slate-900 dark:text-white shadow-sm"
+                        id="resultCount">0</span>
+                    <span class="text-xs font-medium text-slate-500 pr-3">Resources Found</span>
+                </div>
+
+                <div id="book-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <!-- Loading State -->
+                    <div class="col-span-full py-20 flex flex-col items-center justify-center text-slate-400">
+                        <div
+                            class="w-12 h-12 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mb-4">
+                        </div>
+                        <span class="text-sm font-medium tracking-wide">Syncing Library Database...</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer
+        class="mt-auto py-8 text-center text-slate-500 dark:text-slate-400 border-t border-slate-200/50 dark:border-slate-800/50 backdrop-blur-sm">
+        <p class="text-xs font-medium">University Library System &copy; 2026</p>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <script src="../js/app.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

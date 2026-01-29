@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Research | University Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Navbar Placeholder -->
+
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Content -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <header class="mb-12">
+            <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">My Research</h1>
+            <p class="text-slate-500 dark:text-slate-400 font-medium">Manage your active loans and digital library
+                assets.</p>
+        </header>
+
+
+
+        <div class="space-y-12">
+            <!-- Active Loans -->
+            <section>
+                <div class="flex items-center gap-2 mb-6">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        Active Loans
+                        <span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-xs text-slate-500"
+                            id="loan-count-badge">0</span>
+                    </h2>
+                </div>
+                <div id="loan-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <!-- Loans injected here -->
+                </div>
+            </section>
+
+            <!-- Purchases -->
+            <section>
+                <div class="flex items-center gap-2 mb-6 pt-8 border-t border-slate-200/50 dark:border-slate-800/50">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        Digital Library
+                        <span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-xs text-slate-500"
+                            id="purchase-count-badge">0</span>
+                    </h2>
+                </div>
+                <div id="purchase-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <!-- Purchases injected here -->
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer
+        class="mt-auto py-8 text-center text-slate-500 dark:text-slate-400 border-t border-slate-200/50 dark:border-slate-800/50 backdrop-blur-sm">
+        <p class="text-xs font-medium">University Library System &copy; 2026</p>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
